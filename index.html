@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>Donation Test</title>
+  </head>
+  <body>
+    <button id="donate">Donate</button>
+    
+  </body>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+    var donation = {
+      "Donor": {
+        "FirstName":"Aidan",
+        "LastName":"Farley",
+        "Address":{
+          "StreetAddress":"123 Easy St",
+          "City":"Portland",
+          "State":"77e40b3c-c68c-4022-adc1-a2a135a890cc",
+          "Country":"d81cef85-7569-4b2e-8f2e-f7cf998a3342",
+          "PostalCode":"12345"
+        },
+        "Phone":"5015515555",
+        "EmailAddress":"hybuwy@yahoo.com",
+        "ConfirmEmail":"hybuwy@yahoo.com"
+      },
+      "Gift":{
+        "Designations":[{
+          "PaymentType": 0,
+          "Amount":"25",
+          "DesignationId":"09ccef1b-97c6-455a-a793-42ab31888036"
+        }]
+      },
+      "BBSPReturnUri":"http://localhost:9002/#/confirmation",
+      "MerchantAccountId":"c6de7f55-a953-4e64-b382-147268e9b25f"
+    } 
+
+    var workingDonation = {
+      "Donor": {
+        "FirstName":"Aidan",
+        "LastName":"Farley",
+        "Address":{
+          "StreetAddress":"123 Easy St",
+          "City":"Portland",
+          "State":"77e40b3c-c68c-4022-adc1-a2a135a890cc",
+          "Country":"d81cef85-7569-4b2e-8f2e-f7cf998a3342",
+          "PostalCode":"12345"
+        },
+        "Phone":"5015515555",
+        "EmailAddress":"hybuwy@yahoo.com",
+        "ConfirmEmail":"hybuwy@yahoo.com"
+      },
+      "Gift":{
+        "Designations":[{
+          "Amount":"25",
+          "DesignationId":"09ccef1b-97c6-455a-a793-42ab31888036"
+        }],
+        "PaymentMethod": 1
+      },
+      "MerchantAccountId":"c6de7f55-a953-4e64-b382-147268e9b25f"
+    }
+
+    function donate() {
+      $.ajax({
+        type: "POST",
+        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
+        data: workingDonation, // switch workingDonation and donation here
+        success: function(data) {
+          console.log('success:');
+          console.log(data);
+        },
+        error: function(data) {
+          console.log('fail:');
+          console.log(data);
+        },
+        //contentType: 'application/json',
+        dataType: 'json'
+      });
+    }
+
+    $('button').click(function(){
+      donate();
+    })
+  </script>
+</html>
